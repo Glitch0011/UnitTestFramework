@@ -1,6 +1,7 @@
 #include <UnitTest.h>
 
 #include <thread>
+#include <random>
 
 int main()
 {
@@ -21,6 +22,13 @@ int main()
 
 	}, std::chrono::seconds(1));
 
+	UnitTest::TestWithin<double>([=]
+	{
+		auto device = std::default_random_engine();
+		auto engine = std::uniform_real_distribution<double>(9.0, 10.0);
+
+		return engine(device);
+	}, 10.0, 1.0);
 
 	UnitTest::Wait();
 }
