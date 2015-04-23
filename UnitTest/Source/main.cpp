@@ -9,13 +9,13 @@ int main()
 		return true;
 	});
 
-	UnitTest::TestEqual([=]
+	UnitTest::TestEqual<int>([=]
 	{
 		return 1;
 	}, 1);
 
 
-	UnitTest::TestTime([=]
+	UnitTest::TestTimeLessThan([=]
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
