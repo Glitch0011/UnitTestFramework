@@ -1,0 +1,3 @@
+[submodule "Example/PropertySheets"]
+	path = Example/PropertySheets
+	url = ../PropertySheets
