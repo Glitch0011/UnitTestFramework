@@ -1,2 +1,4 @@
 /Debug/
 /Output/
+*.sdf
+*.v12.suo
