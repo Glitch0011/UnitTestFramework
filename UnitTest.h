@@ -53,6 +53,18 @@ public:
 			assert(false);
 	}
 
+	template<class T> static void TestWithin(std::function<T(void)> function, T origin, T allowedOffset)
+	{
+		auto result = function();
+
+		result = abs(origin - result);
+
+		if (result < allowedOffset)
+			assert(true);
+		else
+			assert(false);
+	}
+
 	template<class T> static void TestEqual(std::function<T(void)> function, T value)
 	{
 		assert(value == function());
