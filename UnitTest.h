@@ -24,6 +24,23 @@ public:
 		});
 	}
 
+private:
+	template<class T> static bool GreaterThan(std::function<T(void)> function, T compare)
+	{
+		return function() > compare;
+	}
+
+public:
+	template<class T> static void TestGreaterThan(std::function<T(void)> function, T compare)
+	{
+		assert(GreaterThan(function, compare));
+	}
+
+	template<class T> static void TestLessThan(std::function<T(void)> function, T compare)
+	{
+		assert(!GreaterThan(function, compare));
+	}
+
 	static std::chrono::seconds TestTime(std::function<void(void)> function)
 	{
 		auto start = system_clock::now();
