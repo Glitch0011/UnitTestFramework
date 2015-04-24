@@ -1,3 +1,9 @@
 [submodule "Example/PropertySheets"]
 	path = Example/PropertySheets
 	url = ../PropertySheets
+[submodule "HighAccuracyWindowsStopwatch"]
+	path = HighAccuracyWindowsStopwatch
+	url = ../HighAccuracyWindowsStopwatch
+[submodule "PropertySheets"]
+	path = PropertySheets
+	url = ../PropertySheets

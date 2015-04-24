@@ -3,6 +3,8 @@
 #include <cassert>
 #include <iostream>
 
+#include <HighAccuracyWindowsStopwatch/Stopwatch.h>
+
 using namespace std::chrono;
 
 class UnitTest
@@ -41,16 +43,18 @@ public:
 		assert(!GreaterThan(function, compare));
 	}
 
-	static std::chrono::seconds TestTime(std::function<void(void)> function)
+	static std::chrono::microseconds TestTime(std::function<void(void)> function)
 	{
+		Stopwatch stopwatch;
+
 		auto start = system_clock::now();
 
 		function();
 
-		return duration_cast<seconds>(system_clock::now() - start);
+		return std::chrono::microseconds((long long)(stopwatch.GetTime() * 1000000));
 	}
 
-	static void TestTimeLessThan(std::function<void(void)> function, std::chrono::seconds time)
+	template<class T> static void TestTimeLessThan(std::function<void(void)> function, T time)
 	{
 		auto timePassed = TestTime(function);
 
@@ -60,7 +64,7 @@ public:
 			assert(false);
 	}
 
-	static void TestTimeMoreThan(std::function<void(void)> function, std::chrono::seconds time)
+	template<class T> static void TestTimeMoreThan(std::function<void(void)> function, T time)
 	{
 		auto timePassed = TestTime(function);
 
